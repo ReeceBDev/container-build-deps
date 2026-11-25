@@ -1,16 +1,13 @@
 # container-build-deps
 
-Pinned build assets served for the CI egress allowlist. The CI engine's
-egress is pinned to GitHub + build package infrastructure
-(/opt/vps-1-infra-repo/ops/ci-egress-lock.sh); its own law: "if a build needs
-such material, serve it from GitHub". This repo is that GitHub shelf.
+Pinned build assets published as GitHub release assets, for CI builds whose network egress is restricted to GitHub.
 
-Each release asset records its provenance and sha256 in the release notes;
-the consuming build verifies the digest before extracting. Assets are
-pristine vendor distributions — nothing is rebuilt or modified.
+Every release asset is a pristine vendor distribution — nothing is rebuilt or modified. Each release's notes record the source URL, download date, and sha256; the consuming build verifies the digest before extracting.
 
 ## Releases
 
-- v1 — dotnet-sdk-10.0.401-linux-x64.tar.gz (Microsoft 10.0.401, sha256
-  137268c8ad939c064ff1ee2a6fdf0899d8725377114ea012fbd1ad5fa2550418),
-  consumed by ReeceBDev/agentic-framework-2 pipeline/Dockerfile.
+- [v1](https://github.com/ReeceBDev/container-build-deps/releases/tag/v1) — dotnet-sdk-10.0.401-linux-x64.tar.gz (Microsoft .NET SDK 10.0.401, linux-x64, downloaded from https://builds.dotnet.microsoft.com/dotnet/Sdk/10.0.401/dotnet-sdk-10.0.401-linux-x64.tar.gz on 2026-11-24), sha256 137268c8ad939c064ff1ee2a6fdf0899d8725377114ea012fbd1ad5fa2550418. Consumed by ReeceBDev/agentic-framework-2 (pipeline/Dockerfile).
+
+## Adding an asset
+
+Upload the untouched vendor distribution as a release asset, and record its source URL, download date, and sha256 in the release notes.
